@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://erdang.github.io/"/>
-  <updated>2020-08-12T07:14:45.587Z</updated>
+  <updated>2020-10-26T07:28:03.163Z</updated>
   <id>https://erdang.github.io/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>setTimeout 和 setInterval 的区别及相互模拟</title>
+    <link href="https://erdang.github.io/2020/10/23/time/"/>
+    <id>https://erdang.github.io/2020/10/23/time/</id>
+    <published>2020-10-23T08:36:28.000Z</published>
+    <updated>2020-10-26T07:28:03.163Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;setTimeout 和 setInterval 的区别及相互模拟&lt;br&gt;最近在复习 node的事件循环和浏览器的事件循环，突然想起setTimeout 和 setInterval 特此记录一下&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="js" scheme="https://erdang.github.io/tags/js/"/>
+    
+      <category term="setTimeout" scheme="https://erdang.github.io/tags/setTimeout/"/>
+    
+      <category term="setInterval" scheme="https://erdang.github.io/tags/setInterval/"/>
+    
+  </entry>
+  
+  <entry>
     <title>函数的节流与去抖</title>
     <link href="https://erdang.github.io/2020/07/22/dene/"/>
     <id>https://erdang.github.io/2020/07/22/dene/</id>
     <published>2020-07-22T10:06:49.038Z</published>
-    <updated>2020-08-12T07:14:45.587Z</updated>
+    <updated>2020-08-13T02:56:16.509Z</updated>
     
     <summary type="html">
     
@@ -38,6 +68,10 @@
     
     
       <category term="js" scheme="https://erdang.github.io/tags/js/"/>
+    
+      <category term="节流" scheme="https://erdang.github.io/tags/%E8%8A%82%E6%B5%81/"/>
+    
+      <category term="去抖" scheme="https://erdang.github.io/tags/%E5%8E%BB%E6%8A%96/"/>
     
   </entry>
   
