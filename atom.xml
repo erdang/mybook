@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://erdang.github.io/"/>
-  <updated>2020-10-26T07:28:03.163Z</updated>
+  <updated>2020-10-30T03:24:17.488Z</updated>
   <id>https://erdang.github.io/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>浅谈浏览器与node中的事件循环</title>
+    <link href="https://erdang.github.io/2020/10/26/loop/"/>
+    <id>https://erdang.github.io/2020/10/26/loop/</id>
+    <published>2020-10-26T08:36:29.000Z</published>
+    <updated>2020-10-30T03:24:17.488Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;浅谈浏览器与node中的事件循环&quot;&gt;&lt;a href=&quot;#浅谈浏览器与node中的事件循环&quot; class=&quot;headerlink&quot; title=&quot;浅谈浏览器与node中的事件循环&quot;&gt;&lt;/a&gt;浅谈浏览器与node中的事件循环&lt;/h2&gt;&lt;p&gt; 
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="js" scheme="https://erdang.github.io/tags/js/"/>
+    
+      <category term="事件循环" scheme="https://erdang.github.io/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"/>
+    
+      <category term="node" scheme="https://erdang.github.io/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
     <title>setTimeout 和 setInterval 的区别及相互模拟</title>
     <link href="https://erdang.github.io/2020/10/23/time/"/>
     <id>https://erdang.github.io/2020/10/23/time/</id>
     <published>2020-10-23T08:36:28.000Z</published>
-    <updated>2020-10-26T07:28:03.163Z</updated>
+    <updated>2020-10-27T06:02:58.887Z</updated>
     
     <summary type="html">
     
