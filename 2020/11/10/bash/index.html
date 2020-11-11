@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="setTimeout 和 setInterval 的区别及相互模拟, 愤怒的二档">
+    <meta name="keywords" content="bash, 愤怒的二档">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>setTimeout 和 setInterval 的区别及相互模拟 | 愤怒的二档</title>
+    <title>bash | 愤怒的二档</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">setTimeout 和 setInterval 的区别及相互模拟</h1>
+                    <h1 class="description center-align post-title">bash</h1>
                 </div>
             </div>
         </div>
@@ -431,16 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/js/">
-                                <span class="chip bg-color">js</span>
-                            </a>
-                        
-                            <a href="/tags/setTimeout/">
-                                <span class="chip bg-color">setTimeout</span>
-                            </a>
-                        
-                            <a href="/tags/setInterval/">
-                                <span class="chip bg-color">setInterval</span>
+                            <a href="/tags/bash/">
+                                <span class="chip bg-color">bash</span>
                             </a>
                         
                     </div>
@@ -451,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/js/" class="post-category">
-                                js
+                            <a href="/categories/bash/" class="post-category">
+                                bash
                             </a>
                         
                     </div>
@@ -464,14 +456,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-23
+                    2020-11-10
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-10
+                    2020-11-11
                 </div>
                 
 
@@ -485,7 +477,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -500,25 +492,18 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>setTimeout 和 setInterval 的区别及相互模拟<br>最近在复习 node的事件循环和浏览器的事件循环，突然想起setTimeout 和 setInterval 特此记录一下</p>
-<h2 id="一、setTimeout-和-setInterval的区别"><a href="#一、setTimeout-和-setInterval的区别" class="headerlink" title="一、setTimeout 和 setInterval的区别"></a>一、setTimeout 和 setInterval的区别</h2><h3 id="setTimeout-定义和用法"><a href="#setTimeout-定义和用法" class="headerlink" title="setTimeout() 定义和用法"></a>setTimeout() 定义和用法</h3><p>定义：setTimeout()方法用于在指定毫秒数后再调用函数或者计算表达式（以毫秒为单位）返回的 ID 值可用作 清除clearTimeout() 方法的参数<br>语法：</p>
-<pre><code>setTimeout(fn,ms)</code></pre><p>fn：必需，要调用的函数后要执行的函数；ms：必需，在执行代码前需等待的毫秒数。<br>setTimeout() 只执行函数一次，如果需要多次调用可以使用 setInterval()，或者在函数体内再次调用setTimeout()</p>
-<h3 id="setInterval-定义和用法"><a href="#setInterval-定义和用法" class="headerlink" title="setInterval() 定义和用法"></a>setInterval() 定义和用法</h3><p>定义：setInterval() 方法用于按照指定的周期（以毫秒计）来循环调用函数或计算表达式，直到 clearInterval() 被调用或窗口关闭 返回的 ID 值可用作 清除clearTimeout() 方法的参数<br>语法：</p>
-<pre><code>setInterval(fn,ms)</code></pre><p>fn：必需，要调用的函数后要执行的函数；ms：必需，在执行代码前需等待的毫秒数。<br>setInterval() 会不停的调用函数，直到clearInterval() 被调用或者窗口被关闭，由 setInterval() 返回的ID值可用作 clearInterval() 方法的参数。</p>
-<h2 id="二、setInterval缺点"><a href="#二、setInterval缺点" class="headerlink" title="二、setInterval缺点"></a>二、setInterval缺点</h2><p>定时器指定的时间间隔，表示的是何时将定时器的代码添加到消息队列，而不是何时执行代码。所以真正何时执行代码的时间是不能保证的，取决于何时被主线程的事件循环取到，并执行</p>
-<pre><code>setInterval(function, N)  
-//即：每隔N秒把function事件推到消息队列中</code></pre><p>使用setInterval()的问题在于，定时器代码可能在代码再次被添加到队列之前还没有完成执行，结果导致定时器代码连续运行好几次，而之间没有任何停顿</p>
-<p><img src="/2020/10/23/time/31691-20200730104425601-510760599.png" alt="图一"></p>
-<p>上图可见，setInterval每隔100ms往队列中添加一个事件；100ms后，添加T1定时器代码至队列中，主线程中还有任务在执行，所以等待，some event执行结束后执行T1定时器代码；又过了100ms，T2定时器被添加到队列中，主线程还在执行T1代码，所以等待；又过了100ms，理论上又要往队列里推一个定时器代码，但由于此时T2还在队列中，所以T3不会被添加，结果就是此时被跳过；这里我们可以看到，T1定时器执行结束后马上执行了T2代码，所以并没有达到定时器的效果,而是连续执行。</p>
-<p>因此，js引擎对这个问题的解决方法就是，当使用setInterval()时，仅当没有该定时器的任何其他代码实例时，才将定时器代码添加到队列中。这确保了定时器代码加入到队列中的最小时间间隔为指定间隔。</p>
-<p>但是，这样就会导致一些间隔被跳过了，例如上面所讲的，这里依旧有1个间隔被跳过了。如果功能需求是必须要每个定时器的回调函数都有被执行到，这里就不能满足需求了。</p>
-<p>综上所述，setInterval有两个缺点：</p>
-<p>  1.使用setInterval时，某些间隔会被跳过；即使setInterval调用的方法报错了，他仍然会继续执行。<br>  2.无视网络延迟，可能多个定时器会连续执行；</p>
-<p>因而我们一般用 setTimeout 模拟 setInterval，来规避掉上面的缺点。</p>
-<pre><code>setTimeout(function () {
-  // 任务
-  setTimeout(arguments.callee, 1000);
-}, 1000)</code></pre><p>每次函数执行的时候都会创建一个新的定时器。第二个setTimeout()调用当前执行的函数，并为其设置另外一个定时器。这样做的好处是，在前一个定时器代码执行完之前，不会向队列插入新的定时器代码，确保不会有任何缺失的间隔。而且，它可以保证在下一次定时器代码执行之前，至少要等待指定的间隔，避免了连续的运行</p>
+                <h4 id="学习命令行"><a href="#学习命令行" class="headerlink" title="学习命令行"></a>学习命令行</h4><p><strong>规则</strong></p>
+<p><code>#</code> 代表注释<br><code>\</code> 代表转义字符，可以将特殊符号变成一般字符<br><code>$</code> 代表的是目前这个 Shell 的线程代号，即是所谓的 PID(process ID)，使用<code>echo $$</code>，出现的数字就是 SHELL 的 PID 代码<br><code>?</code> 是一个特殊的变量，代表上一个执行的命令所回传的值。如果成功执行该命令，则会回传一个 0 值，如果执行过程发生错误，就会回传一个非 0 的值</p>
+<p><strong>缩写</strong></p>
+<p>所谓的命令实际上就是单词的缩写，有以下几种常见缩写方式：<br>1、最常见的缩写是取每个单词的首字母</p>
+<pre><code>cd Change Direcroty 切换目录</code></pre><p>2、如果首字母后为<code>h</code>，则保留<code>h</code></p>
+<pre><code>chmod CHange MODe 切换文件权限</code></pre><p>3、 如果只有一个单词，通常取每个音节的首字母</p>
+<pre><code>cp Copy 文件拷贝</code></pre><p>4、取前几个字母作为缩写</p>
+<pre><code>diff DIFFerences 比较文件差异</code></pre><h4 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h4><p><code>tab</code> 一下 提示  二下自动补全<br><code>ctrl-r</code> 搜索命令行历史记录<br><code>ctrl-w</code> 删除你键入的最后一个单词<br><code>ctrl-u</code> 可以删除行内光标所在位置之前的内容<br><code>ctrl-a</code> 可以将光标移至行首<br><code>ctrl-e</code> 可以将光标移至行尾<br><code>ctrl-k</code> 可以删除光标至行尾的所有内容<br><code>ctrl-l</code> 可以清屏<br><code>cd</code>命令可以切换工作路径<br><code>cd .</code> 当前目录<br><code>cd ~</code> 可以进入 home 目录。要访问你的 home 目录中的文件，可以使用前缀 ~（例如 ~/.bashrc）<br><code>cd ..</code> 回到上级目录<br><code>cd -</code> 回到前一个工作路径<br><code>pwd</code> 显示当前工作目录的绝对路径<br><code>mkdir a</code> 创建a文件夹<br><code>mkdir -p a/b/c</code> 创建有层级的目录(a/b/c)，需要使用 -p 选项<br><code>rmdir</code> 删除空目录<br><code>rm -r</code> 删除目录及该目录下的所有目录及文件<br><code>rm -rf</code> 强制删除 <code>-f</code><br><code>cp -r a b</code> # 将目录 a 复制到目录 b<br><code>mv a b</code> # 将目录 a 从当前目录移动到目录 b 下,如果没有目录 b，则目录 a 重命名为目录 b</p>
+<p>依次按下 <code>ctrl-a</code>， <code>#</code>， <code>enter</code> 在行首添加 # 把它当做注释再按下回车执行<br><code>uptime</code> 或 <code>w</code> 来查看系统已经运行多长时间<br><code>alias</code> 来创建常用命令的快捷形式。例如：alias ll=’ls -latr’ 创建了一个新的命令别名 ll。<br><code>unalias lm</code> # 取消别名 lm 的设置<br><code>open</code> 可以使用默认方式打开文件<br><code>ls</code>  # 显示该目录下的所有文件 list files，默认不显示以点开头的文件<br><code>ls -a</code> # 显示所有文件，包括隐藏文件<br><code>ls -l</code> # 显示每个文件的详细信息<br><code>ls ./y</code> # 显示指定路径 <code>./y</code> 下的所有文件<br><code>cat</code># 显示文件内容<br><code>code a.txt</code> # 使用 vscode 打开 a.txt 文件</p>
+<p><code>touch a.txt</code> # 创建空文件a.txt，如果a.txt已经有内容，则修改文件最后更新时间<br><code>echo</code># 输出字符串，也可以新建或改写文件<br><code>echo 123</code> # 输入字符串’123’<br><code>echo -e</code> ‘111\n222’ # 输入多行内容，需要使用-e选项<br><code>echo 123 &gt; 1.txt</code> # 将1.txt的内容改写为’123’<br><code>echo abc &gt;&gt; 1.txt</code> # 向1.txt追加内容，则1.txt的内容为’123 \n abc’<br><code>&gt;</code>表示覆盖<br><code>&gt;&gt;</code> 表示累加</p>
+<p><code>whereis cat</code> 搜索该命令的所在路径及帮助文档所在位置<br><code>which cat</code> 搜索该命令的所在路径及可存在的别名<br><code>find  [搜索范围] [搜索条件]</code> 搜索文件,该命令会把所有文件都搜索<br><code>grep [选项] 字符串 文件名</code> 该命令是搜索字符串的命令 -i 忽略大小写<br>-v 排除指定字符串<br><code>man</code> 命令#获取指定命令的帮助<br><code>man ls</code>#查看ls的帮助<br><code>ifconfig</code>  # 显示所有网卡和接口信息<br><code>lsof -i port:80</code> 哪个程序在使用 80 端口？<br><code>wget {url}</code> # 下载文件，可加 –no-check-certificate 忽略 ssl 验证<br><code>curl -sL {url}</code> # 同 wget -qO- {url} 没有 wget 的时候使用<br><code>netstat -a</code> # 列出所有端口<br><code>jobs</code> # 查看所有后台进程（jobs）<br><code>bg</code>   # 查看后台进程，并切换过去<br><code>fg</code> # 切换后台进程到前台<br><code>fg {job}</code> # 切换特定后台进程到前台<br><code>kill {pid}</code>    # 结束进程<br><code>ps</code> # 查看当前会话进程<br><code>sudo vi /etc/host</code>  编辑host</p>
+<p><a href="https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh" target="_blank" rel="noopener">bash速查</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -562,7 +547,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://erdang.github.io/2020/10/23/time/">https://erdang.github.io/2020/10/23/time/</a>
+                    <a href="https://erdang.github.io/2020/11/10/bash/">https://erdang.github.io/2020/11/10/bash/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -600,16 +585,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/js/">
-                                    <span class="chip bg-color">js</span>
-                                </a>
-                            
-                                <a href="/tags/setTimeout/">
-                                    <span class="chip bg-color">setTimeout</span>
-                                </a>
-                            
-                                <a href="/tags/setInterval/">
-                                    <span class="chip bg-color">setInterval</span>
+                                <a href="/tags/bash/">
+                                    <span class="chip bg-color">bash</span>
                                 </a>
                             
                         </div>
@@ -823,9 +800,61 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/11/10/bash/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="bash">
+                        
+                        <span class="card-title">bash</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            学习命令行规则
+# 代表注释\ 代表转义字符，可以将特殊符号变成一般字符$ 代表的是目前这个 Shell 的线程代号，即是所谓的 PID(process ID)，使用echo $$，出现的数字就是 SHELL 的 PID 代码? 是一个特殊
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/bash/" class="post-category">
+                                    bash
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/bash/">
+                        <span class="chip bg-color">bash</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/10/26/loop/">
                     <div class="card-image">
@@ -848,9 +877,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -872,59 +901,6 @@
                     
                     <a href="/tags/node/">
                         <span class="chip bg-color">node</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/07/22/dene/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="函数的节流与去抖">
-                        
-                        <span class="card-title">函数的节流与去抖</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            优化高频率执行js代码的一种手段，js中的一些事件如浏览器的resize、scroll，鼠标的mousemove、mouseover，input输入框的keypress等事件在触发时，会不断地调用绑定在事件上的回调函数，极大地浪费资源，降低
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-22
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            愤怒的二档
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/js/">
-                        <span class="chip bg-color">js</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%8A%82%E6%B5%81/">
-                        <span class="chip bg-color">节流</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8E%BB%E6%8A%96/">
-                        <span class="chip bg-color">去抖</span>
                     </a>
                     
                 </div>

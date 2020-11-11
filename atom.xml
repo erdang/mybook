@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://erdang.github.io/"/>
-  <updated>2020-10-30T03:24:17.488Z</updated>
+  <updated>2020-11-11T07:56:31.694Z</updated>
   <id>https://erdang.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>bash</title>
+    <link href="https://erdang.github.io/2020/11/10/bash/"/>
+    <id>https://erdang.github.io/2020/11/10/bash/</id>
+    <published>2020-11-10T06:35:27.000Z</published>
+    <updated>2020-11-11T07:56:31.694Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;学习命令行&quot;&gt;&lt;a href=&quot;#学习命令行&quot; class=&quot;headerlink&quot; title=&quot;学习命令行&quot;&gt;&lt;/a&gt;学习命令行&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;规则&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="bash" scheme="https://erdang.github.io/categories/bash/"/>
+    
+    
+      <category term="bash" scheme="https://erdang.github.io/tags/bash/"/>
+    
+  </entry>
   
   <entry>
     <title>浅谈浏览器与node中的事件循环</title>
@@ -50,7 +78,7 @@
     <link href="https://erdang.github.io/2020/10/23/time/"/>
     <id>https://erdang.github.io/2020/10/23/time/</id>
     <published>2020-10-23T08:36:28.000Z</published>
-    <updated>2020-10-27T06:02:58.887Z</updated>
+    <updated>2020-11-10T06:45:24.614Z</updated>
     
     <summary type="html">
     
@@ -65,6 +93,8 @@
     
     </summary>
     
+    
+      <category term="js" scheme="https://erdang.github.io/categories/js/"/>
     
     
       <category term="js" scheme="https://erdang.github.io/tags/js/"/>
