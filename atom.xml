@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://erdang.github.io/"/>
-  <updated>2020-11-18T10:07:08.193Z</updated>
+  <updated>2020-11-24T03:43:39.808Z</updated>
   <id>https://erdang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何优雅处理前端异常？</title>
+    <link href="https://erdang.github.io/2020/11/23/error/"/>
+    <id>https://erdang.github.io/2020/11/23/error/</id>
+    <published>2020-11-23T05:59:20.000Z</published>
+    <updated>2020-11-24T03:43:39.808Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;一、为什么要处理异常&quot;&gt;&lt;a href=&quot;#一、为什么要处理异常&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="error" scheme="https://erdang.github.io/categories/error/"/>
+    
+    
+      <category term="异常" scheme="https://erdang.github.io/tags/%E5%BC%82%E5%B8%B8/"/>
+    
+  </entry>
   
   <entry>
     <title>一篇文章搞懂前端路由原理解析和实现方式</title>
@@ -78,7 +105,7 @@
     <link href="https://erdang.github.io/2020/10/26/loop/"/>
     <id>https://erdang.github.io/2020/10/26/loop/</id>
     <published>2020-10-26T08:36:29.000Z</published>
-    <updated>2020-10-30T03:24:17.488Z</updated>
+    <updated>2020-11-20T06:42:27.766Z</updated>
     
     <summary type="html">
     
@@ -92,6 +119,8 @@
     
     </summary>
     
+    
+      <category term="node" scheme="https://erdang.github.io/categories/node/"/>
     
     
       <category term="js" scheme="https://erdang.github.io/tags/js/"/>

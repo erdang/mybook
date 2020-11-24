@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="setTimeout 和 setInterval 的区别及相互模拟, 愤怒的二档">
+    <meta name="keywords" content="如何优雅处理前端异常？, 愤怒的二档">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>setTimeout 和 setInterval 的区别及相互模拟 | 愤怒的二档</title>
+    <title>如何优雅处理前端异常？ | 愤怒的二档</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">setTimeout 和 setInterval 的区别及相互模拟</h1>
+                    <h1 class="description center-align post-title">如何优雅处理前端异常？</h1>
                 </div>
             </div>
         </div>
@@ -431,16 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/js/">
-                                <span class="chip bg-color">js</span>
-                            </a>
-                        
-                            <a href="/tags/setTimeout/">
-                                <span class="chip bg-color">setTimeout</span>
-                            </a>
-                        
-                            <a href="/tags/setInterval/">
-                                <span class="chip bg-color">setInterval</span>
+                            <a href="/tags/%E5%BC%82%E5%B8%B8/">
+                                <span class="chip bg-color">异常</span>
                             </a>
                         
                     </div>
@@ -451,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/js/" class="post-category">
-                                js
+                            <a href="/categories/error/" class="post-category">
+                                error
                             </a>
                         
                     </div>
@@ -464,28 +456,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-23
+                    2020-11-23
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-10
+                    2020-11-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    11 分
                 </div>
                 
 
@@ -500,25 +492,277 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>setTimeout 和 setInterval 的区别及相互模拟<br>最近在复习 node的事件循环和浏览器的事件循环，突然想起setTimeout 和 setInterval 特此记录一下</p>
-<h2 id="一、setTimeout-和-setInterval的区别"><a href="#一、setTimeout-和-setInterval的区别" class="headerlink" title="一、setTimeout 和 setInterval的区别"></a>一、setTimeout 和 setInterval的区别</h2><h3 id="setTimeout-定义和用法"><a href="#setTimeout-定义和用法" class="headerlink" title="setTimeout() 定义和用法"></a>setTimeout() 定义和用法</h3><p>定义：setTimeout()方法用于在指定毫秒数后再调用函数或者计算表达式（以毫秒为单位）返回的 ID 值可用作 清除clearTimeout() 方法的参数<br>语法：</p>
-<pre><code>setTimeout(fn,ms)</code></pre><p>fn：必需，要调用的函数后要执行的函数；ms：必需，在执行代码前需等待的毫秒数。<br>setTimeout() 只执行函数一次，如果需要多次调用可以使用 setInterval()，或者在函数体内再次调用setTimeout()</p>
-<h3 id="setInterval-定义和用法"><a href="#setInterval-定义和用法" class="headerlink" title="setInterval() 定义和用法"></a>setInterval() 定义和用法</h3><p>定义：setInterval() 方法用于按照指定的周期（以毫秒计）来循环调用函数或计算表达式，直到 clearInterval() 被调用或窗口关闭 返回的 ID 值可用作 清除clearTimeout() 方法的参数<br>语法：</p>
-<pre><code>setInterval(fn,ms)</code></pre><p>fn：必需，要调用的函数后要执行的函数；ms：必需，在执行代码前需等待的毫秒数。<br>setInterval() 会不停的调用函数，直到clearInterval() 被调用或者窗口被关闭，由 setInterval() 返回的ID值可用作 clearInterval() 方法的参数。</p>
-<h2 id="二、setInterval缺点"><a href="#二、setInterval缺点" class="headerlink" title="二、setInterval缺点"></a>二、setInterval缺点</h2><p>定时器指定的时间间隔，表示的是何时将定时器的代码添加到消息队列，而不是何时执行代码。所以真正何时执行代码的时间是不能保证的，取决于何时被主线程的事件循环取到，并执行</p>
-<pre><code>setInterval(function, N)  
-//即：每隔N秒把function事件推到消息队列中</code></pre><p>使用setInterval()的问题在于，定时器代码可能在代码再次被添加到队列之前还没有完成执行，结果导致定时器代码连续运行好几次，而之间没有任何停顿</p>
-<p><img src="/2020/10/23/time/31691-20200730104425601-510760599.png" alt="图一"></p>
-<p>上图可见，setInterval每隔100ms往队列中添加一个事件；100ms后，添加T1定时器代码至队列中，主线程中还有任务在执行，所以等待，some event执行结束后执行T1定时器代码；又过了100ms，T2定时器被添加到队列中，主线程还在执行T1代码，所以等待；又过了100ms，理论上又要往队列里推一个定时器代码，但由于此时T2还在队列中，所以T3不会被添加，结果就是此时被跳过；这里我们可以看到，T1定时器执行结束后马上执行了T2代码，所以并没有达到定时器的效果,而是连续执行。</p>
-<p>因此，js引擎对这个问题的解决方法就是，当使用setInterval()时，仅当没有该定时器的任何其他代码实例时，才将定时器代码添加到队列中。这确保了定时器代码加入到队列中的最小时间间隔为指定间隔。</p>
-<p>但是，这样就会导致一些间隔被跳过了，例如上面所讲的，这里依旧有1个间隔被跳过了。如果功能需求是必须要每个定时器的回调函数都有被执行到，这里就不能满足需求了。</p>
-<p>综上所述，setInterval有两个缺点：</p>
-<p>  1.使用setInterval时，某些间隔会被跳过；即使setInterval调用的方法报错了，他仍然会继续执行。<br>  2.无视网络延迟，可能多个定时器会连续执行；</p>
-<p>因而我们一般用 setTimeout 模拟 setInterval，来规避掉上面的缺点。</p>
-<pre><code>setTimeout(function () {
-  // 任务
-  setTimeout(arguments.callee, 1000);
-}, 1000)</code></pre><p>每次函数执行的时候都会创建一个新的定时器。第二个setTimeout()调用当前执行的函数，并为其设置另外一个定时器。这样做的好处是，在前一个定时器代码执行完之前，不会向队列插入新的定时器代码，确保不会有任何缺失的间隔。而且，它可以保证在下一次定时器代码执行之前，至少要等待指定的间隔，避免了连续的运行</p>
+                <h3 id="一、为什么要处理异常"><a href="#一、为什么要处理异常" class="headerlink" title="一、为什么要处理异常"></a>一、为什么要处理异常</h3><p>1.增强用户体验；<br>2.远程定位问题；<br>3.未雨绸缪，及早发现问题；<br>4.无法复现问题，尤其是移动端，机型，系统都是问题；<br>5.完善的前端方案，前端监控系统；</p>
+<h3 id="二、需要处理哪些异常"><a href="#二、需要处理哪些异常" class="headerlink" title="二、需要处理哪些异常"></a>二、需要处理哪些异常</h3><p>对于前端来说，我们可做的异常捕获还真不少。总结一下，大概如下：</p>
+<ul>
+<li>JS 语法错误、代码异常</li>
+<li>AJAX 请求异常</li>
+<li>静态资源加载异常</li>
+<li>Promise 异常</li>
+<li>Iframe 异常</li>
+<li>跨域 Script error</li>
+<li>崩溃和卡顿</li>
+</ul>
+<h3 id="三、Try-Catch-的误区"><a href="#三、Try-Catch-的误区" class="headerlink" title="三、Try-Catch 的误区"></a>三、Try-Catch 的误区</h3><p><strong>try-catch 只能捕获到同步的运行时错误，对语法和异步错误却无能为力，捕获不到。</strong></p>
+<p>1.同步运行时错误</p>
+<pre><code>try {
+    let name = 'erdang';
+    console.log(nam);
+} catch(e) {
+    console.log('捕获到异常：',e);
+}</code></pre><p>输出：</p>
+<pre><code>捕获到异常： ReferenceError: nam is not defined
+    at &lt;anonymous&gt;:3:15</code></pre><p>2.不能捕获到语法错误，我们修改一下代码，删掉一个单引号：</p>
+<pre><code>try {
+    let name = 'erdang;
+    console.log(nam);
+} catch(e) {
+
+    console.log('捕获到异常：',e);
+}</code></pre><p>输出：</p>
+<pre><code>Uncaught SyntaxError: Invalid or unexpected token</code></pre><blockquote>
+<p>不过语法错误在我们开发阶段就可以看到，应该不会顺利上到线上环境。</p>
+</blockquote>
+<p>3.异步错误</p>
+<pre><code>try {
+    setTimeout(() =&gt; {
+        undefined.map(v =&gt; v);
+    }, 1000)
+} catch(e) {
+    console.log('捕获到异常：',e);
+}</code></pre><p>我们看看日志：</p>
+<pre><code>Uncaught TypeError: Cannot read property 'map' of undefined
+    at setTimeout (&lt;anonymous&gt;:3:11)</code></pre><p>并没有捕获到异常，这是需要我们特别注意的地方。</p>
+<h3 id="四、window-onerror-不是万能的"><a href="#四、window-onerror-不是万能的" class="headerlink" title="四、window.onerror 不是万能的"></a>四、window.onerror 不是万能的</h3><p>当 JS 运行时错误发生时，window 会触发一个 ErrorEvent 接口的 error 事件，并执行 window.onerror()。</p>
+<pre><code>/**
+* @param {String}  message    错误信息
+* @param {String}  source    出错文件
+* @param {Number}  lineno    行号
+* @param {Number}  colno    列号
+* @param {Object}  error  Error对象（对象）
+*/
+
+window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+}</code></pre><p>1.首先试试同步运行时错误</p>
+<pre><code>    window.onerror = function(message, source, lineno, colno, error) {
+    // message：错误信息（字符串）。
+    // source：发生错误的脚本URL（字符串）
+    // lineno：发生错误的行号（数字）
+    // colno：发生错误的列号（数字）
+    // error：Error对象（对象）
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+}
+erdang;</code></pre><p>可以看到，我们捕获到了异常：<br><img src="/2020/11/23/error/895EB798-4956-45DE-BDA9-0B3B7BCF4688.png" alt="图一"></p>
+<p>2.再试试语法错误呢？</p>
+<pre><code>window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+}
+let name = 'erdang</code></pre><blockquote>
+<p>什么，竟然没有捕获到语法错误？</p>
+</blockquote>
+<p>3.我们最后来试试异步运行时错误：</p>
+<pre><code>window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+}
+setTimeout(() =&gt; {
+    erdang;
+});</code></pre><p>控制台输出了：</p>
+<pre><code>捕获到异常： {message: "Uncaught ReferenceError: erdang is not defined", source: "http://127.0.0.1:8001/", lineno: 36, colno: 5, error: ReferenceError: erdang is not defined
+    at setTimeout (http://127.0.0.1:8001/:36:5)}</code></pre><p>4.接着，我们试试网络请求异常的情况：</p>
+<pre><code>&lt;script&gt;
+window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+    return true;
+}
+&lt;/script&gt;
+&lt;img src="./erdang.png"&gt;</code></pre><blockquote>
+<p>我们发现，不论是静态资源异常，或者接口异常，错误都无法捕获到,同步异步 都能捕获。</p>
+</blockquote>
+<p>补充一点：window.onerror 函数只有在返回 true 的时候，异常才不会向上抛出，否则即使是知道异常的发生控制台还是会显示 Uncaught Error: xxxxx</p>
+<pre><code>window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+    return true;
+}
+setTimeout(() =&gt; {
+    erdang;
+});</code></pre><p>控制台就不会再有这样的错误了：</p>
+<pre><code>Uncaught ReferenceError: erdang is not defined
+    at setTimeout ((index):36)</code></pre><p>需要注意：</p>
+<blockquote>
+<p>onerror 最好写在所有 JS 脚本的前面，否则有可能捕获不到错误；<br>onerror 无法捕获语法错误；</p>
+</blockquote>
+<p>到这里基本就清晰了：在实际的使用过程中，onerror 主要是来捕获预料之外的错误，而 try-catch 则是用来在可预见情况下监控特定的错误，两者结合使用更加高效。</p>
+<p>问题又来了，捕获不到静态资源加载异常怎么办？</p>
+<p>五、window.addEventListener</p>
+<p>当一项资源（如图片或脚本）加载失败，加载资源的元素会触发一个 Event 接口的 error 事件，并执行该元素上的onerror() 处理函数。这些 error 事件不会向上冒泡到 window ，不过（至少在 Firefox 中）能被单一的window.addEventListener 捕获。</p>
+<pre><code>&lt;scritp&gt;
+window.addEventListener('error', (error) =&gt; {
+    console.log('捕获到异常：', error);
+}, true)
+&lt;/script&gt;
+&lt;img src="./erdang.png"&gt;</code></pre><p><img src="/2020/11/23/error/895EB798-4956-45DE-BDA9-0B3B7BCF4688" alt="图二"></p>
+<p>由于网络请求异常不会事件冒泡，因此必须在捕获阶段将其捕捉到才行，但是这种方式虽然可以捕捉到网络请求的异常，但是无法判断 HTTP 的状态是 404 还是其他比如 500 等等，所以还需要配合服务端日志才进行排查分析才可以。</p>
+<p>需要注意：</p>
+<ul>
+<li>不同浏览器下返回的 error 对象可能不同，需要注意兼容处理。</li>
+<li>需要注意避免 addEventListener 重复监听。</li>
+</ul>
+<h3 id="六、Promise-Catch"><a href="#六、Promise-Catch" class="headerlink" title="六、Promise Catch"></a>六、Promise Catch</h3><blockquote>
+<p>在 promise 中使用 catch 可以非常方便的捕获到异步 error ，这个很简单。</p>
+</blockquote>
+<p>没有写 catch 的 Promise 中抛出的错误无法被 onerror 或 try-catch 捕获到，所以我们务必要在 Promise 中不要忘记写 catch 处理抛出的异常。</p>
+<p>解决方案： 为了防止有漏掉的 Promise 异常，建议在全局增加一个对 unhandledrejection 的监听，用来全局监听Uncaught Promise Error。使用方式：</p>
+<pre><code>window.addEventListener("unhandledrejection", function(e){
+    console.log(e);
+});</code></pre><p>所以，正如我们上面所说，为了防止有漏掉的 Promise 异常，建议在全局增加一个对 unhandledrejection 的监听，用来全局监听 Uncaught Promise Error。</p>
+<p>补充一点：如果去掉控制台的异常显示，需要加上：</p>
+<p>event.preventDefault();</p>
+<h3 id="七、VUE-errorHandler"><a href="#七、VUE-errorHandler" class="headerlink" title="七、VUE errorHandler"></a>七、VUE errorHandler</h3><pre><code>Vue.config.errorHandler = (err, vm, info) =&gt; {
+    console.error('通过vue errorHandler捕获的错误');
+    console.error(err);
+    console.error(vm);
+    console.error(info);
+}</code></pre><h3 id="八、React-异常捕获"><a href="#八、React-异常捕获" class="headerlink" title="八、React 异常捕获"></a>八、React 异常捕获</h3><p>React 16 提供了一个内置函数 componentDidCatch，使用它可以非常简单的获取到 react 下的错误信息</p>
+<pre><code>componentDidCatch(error, info) {
+    console.log(error, info);
+}</code></pre><h3 id="九、iframe-异常"><a href="#九、iframe-异常" class="headerlink" title="九、iframe 异常"></a>九、iframe 异常</h3><p>对于 iframe 的异常捕获，我们还得借力 window.onerror：</p>
+<pre><code>&lt;iframe src="./iframe.html" frameborder="0"&gt;&lt;/iframe&gt;
+&lt;script&gt;
+window.frames[0].onerror = function (message, source, lineno, colno, error) {
+    console.log('捕获到 iframe 异常：',{message, source, lineno, colno, error});
+    return true;
+};
+&lt;/script&gt;</code></pre><h3 id="十、Script-error"><a href="#十、Script-error" class="headerlink" title="十、Script error"></a>十、Script error</h3><p>一般情况，如果出现 Script error 这样的错误，基本上可以确定是出现了跨域问题。这时候，是不会有其他太多辅助信息的，但是解决思路无非如下：</p>
+<blockquote>
+<p>跨源资源共享机制( CORS )：我们为 script 标签添加 crossOrigin 属性。</p>
+</blockquote>
+<pre><code>&lt;script src="http://erdang.wang/main.js" crossorigin&gt;&lt;/script&gt;</code></pre><p>或者动态去添加 js 脚本</p>
+<pre><code>const script = document.createElement('script');
+script.crossOrigin = 'anonymous';
+script.src = url;
+document.body.appendChild(script);</code></pre><blockquote>
+<p>特别注意，服务器端需要设置：Access-Control-Allow-Origin</p>
+</blockquote>
+<pre class=" language-bash"><code class="language-bash">const originAddEventListener <span class="token operator">=</span> EventTarget.prototype.addEventListener<span class="token punctuation">;</span>
+EventTarget.prototype.addEventListener <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>type, listener, options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  const wrappedListener <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">..</span>.args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    try <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> listener.apply<span class="token punctuation">(</span>this, args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    catch <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      throw err<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> originAddEventListener.call<span class="token punctuation">(</span>this, type, wrappedListener, options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+简单解释一下：
+
+改写了 EventTarget 的 addEventListener 方法；
+对传入的 listener 进行包装，返回包装过的 listener，对其执行进行 try-catch；
+浏览器不会对 try-catch 起来的异常进行跨域拦截，所以 catch 到的时候，是有堆栈信息的；
+重新 throw 出来异常的时候，执行的是同域代码，所以 window.onerror 捕获的时候不会丢失堆栈信息；
+利用包装 addEventListener，我们还可以达到「扩展堆栈」的效果：
+
+<span class="token punctuation">((</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+   const originAddEventListener <span class="token operator">=</span> EventTarget.prototype.addEventListener<span class="token punctuation">;</span>
+   EventTarget.prototype.addEventListener <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>type, listener, options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
++    // 捕获添加事件时的堆栈
++    const addStack <span class="token operator">=</span> new Error<span class="token punctuation">(</span><span class="token variable"><span class="token variable">`</span>Event <span class="token punctuation">(</span>$<span class="token punctuation">{</span>type<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token variable">`</span></span><span class="token punctuation">)</span>.stack<span class="token punctuation">;</span>
+     const wrappedListener <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">..</span>.args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       try <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> listener.apply<span class="token punctuation">(</span>this, args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+       catch <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
++        // 异常发生时，扩展堆栈
++        err.stack +<span class="token operator">=</span> <span class="token string">'\n'</span> + addStack<span class="token punctuation">;</span>
+         throw err<span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">return</span> originAddEventListener.call<span class="token punctuation">(</span>this, type, wrappedListener, options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="十一、崩溃和卡顿"><a href="#十一、崩溃和卡顿" class="headerlink" title="十一、崩溃和卡顿"></a>十一、崩溃和卡顿</h3><p>卡顿也就是网页暂时响应比较慢， JS 可能无法及时执行。但崩溃就不一样了，网页都崩溃了，JS 都不运行了，还有什么办法可以监控网页的崩溃，并将网页崩溃上报呢？</p>
+<pre class=" language-bash"><code class="language-bash">基于Service Worker的崩溃方案
+
+随着PWA概念的流行，大家对Service Worker也逐渐熟悉起来。基于以下原因，我们可以使用Service Worker来实现网页崩溃的监控：
+*1、Service Worker有自己独立的工作线程，与网页区分开，网页崩溃了，Service Worker一般情况下不会崩溃；
+*2、Service Worker生命周期一般比网页还要长，可以用来监控网页的状态；
+*3、网页可以通过**navigator.serviceWorker.controller.postMessage**API向掌管自己的SW发送消息。
+基于以上几点，我们可以实现一种基于心跳检测 的监控方案：
+*P1：网页加载后，通过**postMessage**API每5s给sw发送一个心跳，表示自己在线，sw将在线的网页登记下来，更新登记时间；
+*P2：网页在beforeunload时，通过**postMessage**API告知sw自己已经正常关闭，sw将登记的网页清除；
+*P3：如果网页在运行的过程中crash了，sw中的running状态将不会被清除，更新时间停留在崩溃前的最后一次心跳；
+*P4：Service Worker每10s查看一遍登记中的网页，发现登记时间已经超出了一定时间（比如15s），即可判定该网页crash了。
+一些简化后的测试代码，供参考：
+
+
+if<span class="token punctuation">(</span>navigator.serviceWorker.controller <span class="token operator">!=</span><span class="token operator">=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">let</span> HEARTBEAT_INTERVAL <span class="token operator">=</span> 5 * 1000<span class="token punctuation">;</span>//每5s发一次心跳
+    <span class="token keyword">let</span> sessionId <span class="token operator">=</span> uuid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> heartbeat <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        navigator.serviceWorker.controller.postMessage<span class="token punctuation">(</span><span class="token punctuation">{</span>
+            type: <span class="token string">'heartbeat'</span>,
+            id: sessionId,//本次页面会话唯一的id；
+            data: <span class="token punctuation">{</span><span class="token punctuation">}</span> //附加信息，如果页面crash，上报的附加数据
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    window.addEventListener<span class="token punctuation">(</span><span class="token string">'beforeunload'</span>,function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        navigator.serviceWorker.controller.postMessage<span class="token punctuation">(</span><span class="token punctuation">{</span>
+            type: <span class="token string">'unload'</span>,
+            id: sessionId
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    setInterval<span class="token punctuation">(</span>heartbeat,HEARTBEAT_INTERVAL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    heartbeat<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+const CHECK_CRASH_INTERVAL <span class="token operator">=</span> 10*1000<span class="token punctuation">;</span> //每10s检查一次
+const CRASH_THRESHOLD <span class="token operator">=</span> 15 * 1000<span class="token punctuation">;</span> //超过15s没有心跳则认为已经crash
+const pages <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">let</span> timer
+<span class="token keyword">function</span> checkCrash<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    const now <span class="token operator">=</span> Date.now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span> var <span class="token function">id</span> <span class="token keyword">in</span> pages<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">let</span> page <span class="token operator">=</span> pages<span class="token punctuation">[</span>id<span class="token punctuation">]</span>
+        if<span class="token punctuation">((</span>now-page.t<span class="token punctuation">)</span><span class="token operator">></span>CRASH_THRESHOLD<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            //上报 crash
+            delete pages<span class="token punctuation">[</span>id<span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    if<span class="token punctuation">(</span>Object.keys<span class="token punctuation">(</span>pages<span class="token punctuation">)</span>.length <span class="token operator">==</span> 0<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        clearInterval<span class="token punctuation">(</span>timer<span class="token punctuation">)</span>
+        timer <span class="token operator">=</span> null
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+worker.addEventListener<span class="token punctuation">(</span><span class="token string">'message'</span>, <span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    const data <span class="token operator">=</span> e.data<span class="token punctuation">;</span>
+    if<span class="token punctuation">(</span>data.type <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'heartbeat'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        pages<span class="token punctuation">[</span>data.id<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+            t: Data.now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        if<span class="token punctuation">(</span><span class="token operator">!</span>timer<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            timer <span class="token operator">=</span> setInterval<span class="token punctuation">(</span>function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                checkCrash<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>,CHECK_CRASH_INTERVAL<span class="token punctuation">)</span> 
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>else if<span class="token punctuation">(</span>data.type <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'unload'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        delete pages<span class="token punctuation">[</span>data.id<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h3 id="十二、错误上报"><a href="#十二、错误上报" class="headerlink" title="十二、错误上报"></a>十二、错误上报</h3><p>1.通过 Ajax 发送数据<br>因为 Ajax 请求本身也有可能会发生异常，而且有可能会引发跨域问题，一般情况下更推荐使用动态创建 img 标签的形式进行上报。</p>
+<p>2.动态创建 img 标签的形式</p>
+<pre><code>function report(error) {
+    let reportUrl = 'http://jartto.wang/report';
+    new Image().src = `${reportUrl}?logs=${error}`;
+}</code></pre><p>收集异常信息量太多，怎么办？实际中，我们不得不考虑这样一种情况：如果你的网站访问量很大，那么一个必然的错误发送的信息就有很多条，这时候，我们需要设置采集率，从而减缓服务器的压力：</p>
+<pre><code>Reporter.send = function(data) {
+    // 只采集 30%
+    if(Math.random() &lt; 0.3) {
+        send(data)      // 上报错误信息
+    }
+}</code></pre><h3 id="十三、总结"><a href="#十三、总结" class="headerlink" title="十三、总结"></a>十三、总结</h3><p>1.可疑区域增加 Try-Catch<br>2.全局监控 JS 异常 window.onerror<br>3.全局监控静态资源异常 window.addEventListener<br>4.捕获没有 Catch 的 Promise 异常：unhandledrejection<br>5.VUE errorHandler 和 React componentDidCatch<br>6.监控网页崩溃：window 对象的 load 和 beforeunload<br>7.跨域 crossOrigin 解决</p>
+<p>其实很简单，正如上文所说：采用组合方案，分类型的去捕获异常，这样基本 80%-90% 的问题都化于无形。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -562,7 +806,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://erdang.github.io/2020/10/23/time/">https://erdang.github.io/2020/10/23/time/</a>
+                    <a href="https://erdang.github.io/2020/11/23/error/">https://erdang.github.io/2020/11/23/error/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -600,16 +844,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/js/">
-                                    <span class="chip bg-color">js</span>
-                                </a>
-                            
-                                <a href="/tags/setTimeout/">
-                                    <span class="chip bg-color">setTimeout</span>
-                                </a>
-                            
-                                <a href="/tags/setInterval/">
-                                    <span class="chip bg-color">setInterval</span>
+                                <a href="/tags/%E5%BC%82%E5%B8%B8/">
+                                    <span class="chip bg-color">异常</span>
                                 </a>
                             
                         </div>
@@ -823,59 +1059,49 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/10/26/loop/">
+                <a href="/2020/11/23/error/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="浅谈浏览器与node中的事件循环">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="如何优雅处理前端异常？">
                         
-                        <span class="card-title">浅谈浏览器与node中的事件循环</span>
+                        <span class="card-title">如何优雅处理前端异常？</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            浅谈浏览器与node中的事件循环  学习node，总结记录一下两者区别
-进程和线程先从概念说起:
-
-进程是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位)
-
-线程是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位
+                            一、为什么要处理异常1.增强用户体验；2.远程定位问题；3.未雨绸缪，及早发现问题；4.无法复现问题，尤其是移动端，机型，系统都是问题；5.完善的前端方案，前端监控系统；
+二、需要处理哪些异常对于前端来说，我们可做的异常捕获还真不少。总结一
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/node/" class="post-category">
-                                    node
+                            <a href="/categories/error/" class="post-category">
+                                    error
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/js/">
-                        <span class="chip bg-color">js</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
-                        <span class="chip bg-color">事件循环</span>
-                    </a>
-                    
-                    <a href="/tags/node/">
-                        <span class="chip bg-color">node</span>
+                    <a href="/tags/%E5%BC%82%E5%B8%B8/">
+                        <span class="chip bg-color">异常</span>
                     </a>
                     
                 </div>
@@ -889,29 +1115,34 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/22/dene/">
+                <a href="/2020/11/18/route/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="函数的节流与去抖">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="一篇文章搞懂前端路由原理解析和实现方式">
                         
-                        <span class="card-title">函数的节流与去抖</span>
+                        <span class="card-title">一篇文章搞懂前端路由原理解析和实现方式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            优化高频率执行js代码的一种手段，js中的一些事件如浏览器的resize、scroll，鼠标的mousemove、mouseover，input输入框的keypress等事件在触发时，会不断地调用绑定在事件上的回调函数，极大地浪费资源，降低
+                            什么是前端路由路由的概念来源于服务端，在服务端中路由描述的是 URL 与处理函数之间的映射关系。
+在 Web 前端单页应用 SPA(Single Page Application)中，路由描述的是 URL 与 UI 之间的映射关系，这种映射
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-18
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            愤怒的二档
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/route/" class="post-category">
+                                    route
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -919,16 +1150,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/js/">
-                        <span class="chip bg-color">js</span>
+                    <a href="/tags/route/">
+                        <span class="chip bg-color">route</span>
                     </a>
                     
-                    <a href="/tags/%E8%8A%82%E6%B5%81/">
-                        <span class="chip bg-color">节流</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8E%BB%E6%8A%96/">
-                        <span class="chip bg-color">去抖</span>
+                    <a href="/tags/%E8%B7%AF%E7%94%B1/">
+                        <span class="chip bg-color">路由</span>
                     </a>
                     
                 </div>
