@@ -601,7 +601,7 @@ window.addEventListener('error', (error) =&gt; {
     console.log('捕获到异常：', error);
 }, true)
 &lt;/script&gt;
-&lt;img src="./erdang.png"&gt;</code></pre><p><img src="/2020/11/23/error/895EB798-4956-45DE-BDA9-0B3B7BCF4688" alt="图二"></p>
+&lt;img src="./erdang.png"&gt;</code></pre><p><img src="/2020/11/23/error/895EB798-4956-45DE-BDA9-0B3B7BCF4688.png" alt="图二"></p>
 <p>由于网络请求异常不会事件冒泡，因此必须在捕获阶段将其捕捉到才行，但是这种方式虽然可以捕捉到网络请求的异常，但是无法判断 HTTP 的状态是 404 还是其他比如 500 等等，所以还需要配合服务端日志才进行排查分析才可以。</p>
 <p>需要注意：</p>
 <ul>
