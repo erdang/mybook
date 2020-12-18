@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="bash, 愤怒的二档">
+    <meta name="keywords" content="柯理化, 愤怒的二档">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>bash | 愤怒的二档</title>
+    <title>柯理化 | 愤怒的二档</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">bash</h1>
+                    <h1 class="description center-align post-title">柯理化</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/bash/">
-                                <span class="chip bg-color">bash</span>
+                            <a href="/tags/js/">
+                                <span class="chip bg-color">js</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9F%AF%E7%90%86%E5%8C%96/">
+                                <span class="chip bg-color">柯理化</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/">
+                                <span class="chip bg-color">高阶函数</span>
                             </a>
                         
                     </div>
@@ -443,8 +451,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/bash/" class="post-category">
-                                bash
+                            <a href="/categories/js/" class="post-category">
+                                js
                             </a>
                         
                     </div>
@@ -456,28 +464,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-10
+                    2020-12-17
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-11
+                    2020-12-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
 
@@ -492,18 +500,150 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="学习命令行"><a href="#学习命令行" class="headerlink" title="学习命令行"></a>学习命令行</h4><p><strong>规则</strong></p>
-<p><code>#</code> 代表注释<br><code>\</code> 代表转义字符，可以将特殊符号变成一般字符<br><code>$</code> 代表的是目前这个 Shell 的线程代号，即是所谓的 PID(process ID)，使用<code>echo $$</code>，出现的数字就是 SHELL 的 PID 代码<br><code>?</code> 是一个特殊的变量，代表上一个执行的命令所回传的值。如果成功执行该命令，则会回传一个 0 值，如果执行过程发生错误，就会回传一个非 0 的值</p>
-<p><strong>缩写</strong></p>
-<p>所谓的命令实际上就是单词的缩写，有以下几种常见缩写方式：<br>1、最常见的缩写是取每个单词的首字母</p>
-<pre><code>cd Change Direcroty 切换目录</code></pre><p>2、如果首字母后为<code>h</code>，则保留<code>h</code></p>
-<pre><code>chmod CHange MODe 切换文件权限</code></pre><p>3、 如果只有一个单词，通常取每个音节的首字母</p>
-<pre><code>cp Copy 文件拷贝</code></pre><p>4、取前几个字母作为缩写</p>
-<pre><code>diff DIFFerences 比较文件差异</code></pre><h4 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h4><p><code>tab</code> 一下 提示  二下自动补全<br><code>ctrl-r</code> 搜索命令行历史记录<br><code>ctrl-w</code> 删除你键入的最后一个单词<br><code>ctrl-u</code> 可以删除行内光标所在位置之前的内容<br><code>ctrl-a</code> 可以将光标移至行首<br><code>ctrl-e</code> 可以将光标移至行尾<br><code>ctrl-k</code> 可以删除光标至行尾的所有内容<br><code>ctrl-l</code> 可以清屏<br><code>cd</code>命令可以切换工作路径<br><code>cd .</code> 当前目录<br><code>cd ~</code> 可以进入 home 目录。要访问你的 home 目录中的文件，可以使用前缀 ~（例如 ~/.bashrc）<br><code>cd ..</code> 回到上级目录<br><code>cd -</code> 回到前一个工作路径<br><code>pwd</code> 显示当前工作目录的绝对路径<br><code>mkdir a</code> 创建a文件夹<br><code>mkdir -p a/b/c</code> 创建有层级的目录(a/b/c)，需要使用 -p 选项<br><code>rmdir</code> 删除空目录<br><code>rm -r</code> 删除目录及该目录下的所有目录及文件<br><code>rm -rf</code> 强制删除 <code>-f</code><br><code>cp -r a b</code> # 将目录 a 复制到目录 b<br><code>mv a b</code> # 将目录 a 从当前目录移动到目录 b 下,如果没有目录 b，则目录 a 重命名为目录 b</p>
-<p>依次按下 <code>ctrl-a</code>， <code>#</code>， <code>enter</code> 在行首添加 # 把它当做注释再按下回车执行<br><code>uptime</code> 或 <code>w</code> 来查看系统已经运行多长时间<br><code>alias</code> 来创建常用命令的快捷形式。例如：alias ll=’ls -latr’ 创建了一个新的命令别名 ll。<br><code>unalias lm</code> # 取消别名 lm 的设置<br><code>open</code> 可以使用默认方式打开文件<br><code>ls</code>  # 显示该目录下的所有文件 list files，默认不显示以点开头的文件<br><code>ls -a</code> # 显示所有文件，包括隐藏文件<br><code>ls -l</code> # 显示每个文件的详细信息<br><code>ls ./y</code> # 显示指定路径 <code>./y</code> 下的所有文件<br><code>cat</code># 显示文件内容<br><code>code a.txt</code> # 使用 vscode 打开 a.txt 文件</p>
-<p><code>touch a.txt</code> # 创建空文件a.txt，如果a.txt已经有内容，则修改文件最后更新时间<br><code>echo</code># 输出字符串，也可以新建或改写文件<br><code>echo 123</code> # 输入字符串’123’<br><code>echo -e</code> ‘111\n222’ # 输入多行内容，需要使用-e选项<br><code>echo 123 &gt; 1.txt</code> # 将1.txt的内容改写为’123’<br><code>echo abc &gt;&gt; 1.txt</code> # 向1.txt追加内容，则1.txt的内容为’123 \n abc’<br><code>&gt;</code>表示覆盖<br><code>&gt;&gt;</code> 表示累加</p>
-<p><code>whereis cat</code> 搜索该命令的所在路径及帮助文档所在位置<br><code>which cat</code> 搜索该命令的所在路径及可存在的别名<br><code>find  [搜索范围] [搜索条件]</code> 搜索文件,该命令会把所有文件都搜索<br><code>grep [选项] 字符串 文件名</code> 该命令是搜索字符串的命令 -i 忽略大小写<br>-v 排除指定字符串<br><code>man</code> 命令#获取指定命令的帮助<br><code>man ls</code>#查看ls的帮助<br><code>ifconfig</code>  # 显示所有网卡和接口信息<br><code>lsof -i port:80</code> 哪个程序在使用 80 端口？<br><code>wget {url}</code> # 下载文件，可加 –no-check-certificate 忽略 ssl 验证<br><code>curl -sL {url}</code> # 同 wget -qO- {url} 没有 wget 的时候使用<br><code>netstat -a</code> # 列出所有端口<br><code>jobs</code> # 查看所有后台进程（jobs）<br><code>bg</code>   # 查看后台进程，并切换过去<br><code>fg</code> # 切换后台进程到前台<br><code>fg {job}</code> # 切换特定后台进程到前台<br><code>kill {pid}</code>    # 结束进程<br><code>ps</code> # 查看当前会话进程<br><code>sudo vi /etc/host</code>  编辑host</p>
-<p><a href="https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh" target="_blank" rel="noopener">bash速查</a></p>
+                <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>柯理化 又称 部分求值,是把接受多个参数的函数变成一个接受单一参数的函数,并且返回接受剩余参数返回结果的新函数的技术</p>
+<p>简而言之就是把多参数的函数拆成单参数的函数,内部在返回调用下一单参数函数，依次处理剩余参数</p>
+<p>看这个解释有一点抽象，我们就拿被做了无数次示例的add函数，来做一个简单的实现。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> add<span class="token punctuation">(</span>x,y<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x+y
+<span class="token punctuation">}</span>
+
+curring 后
+
+<span class="token keyword">function</span> curringAdd<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> function<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> x+y
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+add<span class="token punctuation">(</span>1,2<span class="token punctuation">)</span> //3
+curringAdd<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">(</span>2<span class="token punctuation">)</span> // 3</code></pre>
+<p>实际上就是把add函数的x，y两个参数变成了先用一个函数接收x然后返回一个函数去处理y参数。现在思路应该就比较清晰了，就是只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。</p>
+<h3 id="Currying有哪些好处呢"><a href="#Currying有哪些好处呢" class="headerlink" title="Currying有哪些好处呢"></a>Currying有哪些好处呢</h3><h4 id="1-参数复用"><a href="#1-参数复用" class="headerlink" title="1.参数复用"></a>1.参数复用</h4><pre class=" language-bash"><code class="language-bash">正则验证 reg.test<span class="token punctuation">(</span>str<span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> check<span class="token punctuation">(</span>reg,txt<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> reg.test<span class="token punctuation">(</span>txt<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+check<span class="token punctuation">(</span>/\d+/g,<span class="token string">'test'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> curringCheck<span class="token punctuation">(</span>reg<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> funtion<span class="token punctuation">(</span>txt<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> reg.test<span class="token punctuation">(</span>txt<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+var hasNumber <span class="token operator">=</span> curringCheck<span class="token punctuation">(</span>/\d+/g<span class="token punctuation">)</span>
+hasNumber<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span></code></pre>
+<p>上面这是一个正则校验，正常的我们只要调用check就可以了，但是如果我们还有别的地方要 验证数字，我们想要复用这个正则,那这样就很方便了</p>
+<h4 id="2-提前调用"><a href="#2-提前调用" class="headerlink" title="2.提前调用"></a>2.提前调用</h4><pre class=" language-bash"><code class="language-bash">var bind <span class="token operator">=</span> funtion<span class="token punctuation">(</span>element,event,handler<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    if<span class="token punctuation">(</span>document.addEventLister<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        element.addEventLister<span class="token punctuation">(</span>event,hanler,false<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>else<span class="token punctuation">{</span>
+        element.attachEvent<span class="token punctuation">(</span><span class="token string">'on'</span>+event,handler<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+var bind <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    if<span class="token punctuation">(</span>document.addEventLister<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> function<span class="token punctuation">(</span>element,event,handler<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            element.addEventLister<span class="token punctuation">(</span>event,hanler,false<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>else<span class="token punctuation">{</span>
+       <span class="token keyword">return</span> function<span class="token punctuation">(</span>element,event,handler<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            element.attachEvent<span class="token punctuation">(</span><span class="token string">'on'</span>+event,handler<span class="token punctuation">)</span>
+       <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>我们经常会封装一些dom操作，第一种最常见，但是如果用第二种，就提前确定了会走哪个方法,避免每次都去判断</p>
+<h4 id="3-延迟计算-运行"><a href="#3-延迟计算-运行" class="headerlink" title="3.延迟计算/运行"></a>3.延迟计算/运行</h4><pre class=" language-bash"><code class="language-bash">Function.protoype.bind <span class="token operator">=</span> function<span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    var _this <span class="token operator">=</span> this<span class="token punctuation">;</span>
+    var args <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>.slice<span class="token punctuation">(</span><span class="token punctuation">)</span>.call<span class="token punctuation">(</span>arguments,1<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> _this.apply<span class="token punctuation">(</span>null,args<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>像我们js中经常使用的bind，实现的机制就是Currying</p>
+<h5 id="有没有什么通用的封装方法？"><a href="#有没有什么通用的封装方法？" class="headerlink" title="有没有什么通用的封装方法？"></a>有没有什么通用的封装方法？</h5><pre class=" language-bash"><code class="language-bash">// 初步封装
+var currying <span class="token operator">=</span> function<span class="token punctuation">(</span>fn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    // args 获取第一个方法内的全部参数
+    var args <span class="token operator">=</span> Array.prototype.slice.call<span class="token punctuation">(</span>arguments, 1<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        // 将后面方法里的全部参数和args进行合并
+        var newArgs <span class="token operator">=</span> args.concat<span class="token punctuation">(</span>Array.prototype.slice.call<span class="token punctuation">(</span>arguments<span class="token punctuation">))</span>
+        // 把合并后的参数通过apply作为fn的参数并执行
+        <span class="token keyword">return</span> fn.apply<span class="token punctuation">(</span>this, newArgs<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>这边首先是初步封装,通过闭包把初步参数给保存下来，然后通过获取剩下的arguments进行拼接，最后执行需要currying的函数。</p>
+<p>但是好像还有些什么缺陷，这样返回的话其实只能多扩展一个参数，currying(a)(b)(c)这样的话，貌似就不支持了（不支持多参数调用），一般这种情况都会想到使用递归再进行封装一层。</p>
+<pre class=" language-bash"><code class="language-bash">//多参数调用
+var currying <span class="token operator">=</span> function<span class="token punctuation">(</span>fn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    // args 获取第一个方法内的全部参数
+    var args <span class="token operator">=</span> Array.prototype.slice.call<span class="token punctuation">(</span>arguments, 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    var _this <span class="token operator">=</span> this<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        // 将后面方法里的全部参数和args进行合并
+        var newArgs <span class="token operator">=</span> Array.prototype.slice.call<span class="token punctuation">(</span>arguments<span class="token punctuation">)</span>
+        if<span class="token punctuation">(</span>newArgs.length<span class="token operator">&lt;</span>fn.length<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            currying.call<span class="token punctuation">(</span>_this,fn,newArgs<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        // 把合并后的参数通过apply作为fn的参数并执行
+        <span class="token keyword">return</span> fn.apply<span class="token punctuation">(</span>this, args.concat<span class="token punctuation">(</span>newArgs<span class="token punctuation">))</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>这边其实是在初步的基础上，加上了递归的调用，只要参数个数小于最初的fn.length，就会继续执行递归</p>
+<p>curry的一些性能问题你只要知道下面四点就差不多了：</p>
+<ul>
+<li>存取arguments对象通常要比存取命名参数要慢一点</li>
+<li>一些老版本的浏览器在arguments.length的实现上是相当慢的</li>
+<li>使用fn.apply( … ) 和 fn.call( … )通常比直接调用fn( … ) 稍微慢点</li>
+<li>创建大量嵌套作用域和闭包函数会带来花销，无论是在内存还是速度上</li>
+</ul>
+<p>其实在大部分应用中，主要的性能瓶颈是在操作DOM节点上，这js的性能损耗基本是可以忽略不计的，所以curry是可以直接放心的使用</p>
+<pre class=" language-bash"><code class="language-bash">面试题
+var currying <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    // args 获取第一个方法内的全部参数
+
+    var _this <span class="token operator">=</span> this<span class="token punctuation">;</span>
+    var args <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>.slice.call<span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        // 将后面方法里的全部参数和args进行合并
+
+        var newArgs <span class="token operator">=</span> Array.prototype.slice.call<span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        var narg <span class="token operator">=</span> args.concat<span class="token punctuation">(</span>newArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        var money <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+
+        if<span class="token punctuation">(</span>newArgs.length<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> currying.apply<span class="token punctuation">(</span>_this,narg<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>else<span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>var i <span class="token operator">=</span> 0, l <span class="token operator">=</span> narg.length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> l<span class="token punctuation">;</span> i++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                money +<span class="token operator">=</span> narg<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> money
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+console.log<span class="token punctuation">(</span>currying<span class="token punctuation">(</span>1,2<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">))</span> //6
+console.log<span class="token punctuation">(</span>currying<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">))</span> //6
+
+
+
+<span class="token keyword">function</span> add<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    var f <span class="token operator">=</span> function<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        if<span class="token punctuation">(</span> y <span class="token operator">==</span><span class="token operator">=</span> undefined<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        x +<span class="token operator">=</span> y<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> f
+    <span class="token punctuation">}</span>
+    f.toString <span class="token operator">=</span> f.valueOf <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> f
+<span class="token punctuation">}</span>
+console.log<span class="token punctuation">(</span>+add<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">(</span>3<span class="token punctuation">)</span><span class="token punctuation">(</span>4<span class="token punctuation">))</span> //10
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -547,7 +687,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://erdang.github.io/2020/11/10/bash/">https://erdang.github.io/2020/11/10/bash/</a>
+                    <a href="https://erdang.github.io/2020/12/17/curry/">https://erdang.github.io/2020/12/17/curry/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -585,8 +725,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/bash/">
-                                    <span class="chip bg-color">bash</span>
+                                <a href="/tags/js/">
+                                    <span class="chip bg-color">js</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9F%AF%E7%90%86%E5%8C%96/">
+                                    <span class="chip bg-color">柯理化</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/">
+                                    <span class="chip bg-color">高阶函数</span>
                                 </a>
                             
                         </div>
@@ -800,51 +948,58 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/18/route/">
+                <a href="/2020/12/17/curry/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="一篇文章搞懂前端路由原理解析和实现方式">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="柯理化">
                         
-                        <span class="card-title">一篇文章搞懂前端路由原理解析和实现方式</span>
+                        <span class="card-title">柯理化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            什么是前端路由路由的概念来源于服务端，在服务端中路由描述的是 URL 与处理函数之间的映射关系。
-在 Web 前端单页应用 SPA(Single Page Application)中，路由描述的是 URL 与 UI 之间的映射关系，这种映射
+                            简介柯理化 又称 部分求值,是把接受多个参数的函数变成一个接受单一参数的函数,并且返回接受剩余参数返回结果的新函数的技术
+简而言之就是把多参数的函数拆成单参数的函数,内部在返回调用下一单参数函数，依次处理剩余参数
+看这个解释有一点抽象，我们
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/route/" class="post-category">
-                                    route
+                            <a href="/categories/js/" class="post-category">
+                                    js
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/route/">
-                        <span class="chip bg-color">route</span>
+                    <a href="/tags/js/">
+                        <span class="chip bg-color">js</span>
                     </a>
                     
-                    <a href="/tags/%E8%B7%AF%E7%94%B1/">
-                        <span class="chip bg-color">路由</span>
+                    <a href="/tags/%E6%9F%AF%E7%90%86%E5%8C%96/">
+                        <span class="chip bg-color">柯理化</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/">
+                        <span class="chip bg-color">高阶函数</span>
                     </a>
                     
                 </div>
@@ -858,36 +1013,32 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/26/loop/">
+                <a href="/2020/11/23/error/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="浅谈浏览器与node中的事件循环">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="如何优雅处理前端异常？">
                         
-                        <span class="card-title">浅谈浏览器与node中的事件循环</span>
+                        <span class="card-title">如何优雅处理前端异常？</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            浅谈浏览器与node中的事件循环  学习node，总结记录一下两者区别
-进程和线程先从概念说起:
-
-进程是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位)
-
-线程是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位
+                            一、为什么要处理异常1.增强用户体验；2.远程定位问题；3.未雨绸缪，及早发现问题；4.无法复现问题，尤其是移动端，机型，系统都是问题；5.完善的前端方案，前端监控系统；
+二、需要处理哪些异常对于前端来说，我们可做的异常捕获还真不少。总结一
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/node/" class="post-category">
-                                    node
+                            <a href="/categories/error/" class="post-category">
+                                    error
                                 </a>
                             
                             
@@ -897,16 +1048,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/js/">
-                        <span class="chip bg-color">js</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
-                        <span class="chip bg-color">事件循环</span>
-                    </a>
-                    
-                    <a href="/tags/node/">
-                        <span class="chip bg-color">node</span>
+                    <a href="/tags/%E5%BC%82%E5%B8%B8/">
+                        <span class="chip bg-color">异常</span>
                     </a>
                     
                 </div>
