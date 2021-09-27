@@ -1,0 +1,1499 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="如何优雅处理前端异常？, 愤怒的二档">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>如何优雅处理前端异常？ | 愤怒的二档</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="愤怒的二档" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">愤怒的二档</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">愤怒的二档</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/erdang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/erdang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">如何优雅处理前端异常？</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%BC%82%E5%B8%B8/">
+                                <span class="chip bg-color">异常</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/error/" class="post-category">
+                                error
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-11-23
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-11-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    11 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="一、为什么要处理异常"><a href="#一、为什么要处理异常" class="headerlink" title="一、为什么要处理异常"></a>一、为什么要处理异常</h3><p>1.增强用户体验；<br>2.远程定位问题；<br>3.未雨绸缪，及早发现问题；<br>4.无法复现问题，尤其是移动端，机型，系统都是问题；<br>5.完善的前端方案，前端监控系统；</p>
+<h3 id="二、需要处理哪些异常"><a href="#二、需要处理哪些异常" class="headerlink" title="二、需要处理哪些异常"></a>二、需要处理哪些异常</h3><p>对于前端来说，我们可做的异常捕获还真不少。总结一下，大概如下：</p>
+<ul>
+<li>JS 语法错误、代码异常</li>
+<li>AJAX 请求异常</li>
+<li>静态资源加载异常</li>
+<li>Promise 异常</li>
+<li>Iframe 异常</li>
+<li>跨域 Script error</li>
+<li>崩溃和卡顿</li>
+</ul>
+<h3 id="三、Try-Catch-的误区"><a href="#三、Try-Catch-的误区" class="headerlink" title="三、Try-Catch 的误区"></a>三、Try-Catch 的误区</h3><p><strong>try-catch 只能捕获到同步的运行时错误，对语法和异步错误却无能为力，捕获不到。</strong></p>
+<p>1.同步运行时错误</p>
+<pre><code>try {
+    let name = 'erdang';
+    console.log(nam);
+} catch(e) {
+    console.log('捕获到异常：',e);
+}</code></pre><p>输出：</p>
+<pre><code>捕获到异常： ReferenceError: nam is not defined
+    at &lt;anonymous&gt;:3:15</code></pre><p>2.不能捕获到语法错误，我们修改一下代码，删掉一个单引号：</p>
+<pre><code>try {
+    let name = 'erdang;
+    console.log(nam);
+} catch(e) {
+
+    console.log('捕获到异常：',e);
+}</code></pre><p>输出：</p>
+<pre><code>Uncaught SyntaxError: Invalid or unexpected token</code></pre><blockquote>
+<p>不过语法错误在我们开发阶段就可以看到，应该不会顺利上到线上环境。</p>
+</blockquote>
+<p>3.异步错误</p>
+<pre><code>try {
+    setTimeout(() =&gt; {
+        undefined.map(v =&gt; v);
+    }, 1000)
+} catch(e) {
+    console.log('捕获到异常：',e);
+}</code></pre><p>我们看看日志：</p>
+<pre><code>Uncaught TypeError: Cannot read property 'map' of undefined
+    at setTimeout (&lt;anonymous&gt;:3:11)</code></pre><p>并没有捕获到异常，这是需要我们特别注意的地方。</p>
+<h3 id="四、window-onerror-不是万能的"><a href="#四、window-onerror-不是万能的" class="headerlink" title="四、window.onerror 不是万能的"></a>四、window.onerror 不是万能的</h3><p>当 JS 运行时错误发生时，window 会触发一个 ErrorEvent 接口的 error 事件，并执行 window.onerror()。</p>
+<pre><code>/**
+* @param {String}  message    错误信息
+* @param {String}  source    出错文件
+* @param {Number}  lineno    行号
+* @param {Number}  colno    列号
+* @param {Object}  error  Error对象（对象）
+*/
+
+window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+}</code></pre><p>1.首先试试同步运行时错误</p>
+<pre><code>    window.onerror = function(message, source, lineno, colno, error) {
+    // message：错误信息（字符串）。
+    // source：发生错误的脚本URL（字符串）
+    // lineno：发生错误的行号（数字）
+    // colno：发生错误的列号（数字）
+    // error：Error对象（对象）
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+}
+erdang;</code></pre><p>可以看到，我们捕获到了异常：<br><img src="/2020/11/23/error/895EB798-4956-45DE-BDA9-0B3B7BCF4688.png" alt="图一"></p>
+<p>2.再试试语法错误呢？</p>
+<pre><code>window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+}
+let name = 'erdang</code></pre><blockquote>
+<p>什么，竟然没有捕获到语法错误？</p>
+</blockquote>
+<p>3.我们最后来试试异步运行时错误：</p>
+<pre><code>window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+}
+setTimeout(() =&gt; {
+    erdang;
+});</code></pre><p>控制台输出了：</p>
+<pre><code>捕获到异常： {message: "Uncaught ReferenceError: erdang is not defined", source: "http://127.0.0.1:8001/", lineno: 36, colno: 5, error: ReferenceError: erdang is not defined
+    at setTimeout (http://127.0.0.1:8001/:36:5)}</code></pre><p>4.接着，我们试试网络请求异常的情况：</p>
+<pre><code>&lt;script&gt;
+window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+    return true;
+}
+&lt;/script&gt;
+&lt;img src="./erdang.png"&gt;</code></pre><blockquote>
+<p>我们发现，不论是静态资源异常，或者接口异常，错误都无法捕获到,同步异步 都能捕获。</p>
+</blockquote>
+<p>补充一点：window.onerror 函数只有在返回 true 的时候，异常才不会向上抛出，否则即使是知道异常的发生控制台还是会显示 Uncaught Error: xxxxx</p>
+<pre><code>window.onerror = function(message, source, lineno, colno, error) {
+    console.log('捕获到异常：',{message, source, lineno, colno, error});
+    return true;
+}
+setTimeout(() =&gt; {
+    erdang;
+});</code></pre><p>控制台就不会再有这样的错误了：</p>
+<pre><code>Uncaught ReferenceError: erdang is not defined
+    at setTimeout ((index):36)</code></pre><p>需要注意：</p>
+<blockquote>
+<p>onerror 最好写在所有 JS 脚本的前面，否则有可能捕获不到错误；<br>onerror 无法捕获语法错误；</p>
+</blockquote>
+<p>到这里基本就清晰了：在实际的使用过程中，onerror 主要是来捕获预料之外的错误，而 try-catch 则是用来在可预见情况下监控特定的错误，两者结合使用更加高效。</p>
+<p>问题又来了，捕获不到静态资源加载异常怎么办？</p>
+<p>五、window.addEventListener</p>
+<p>当一项资源（如图片或脚本）加载失败，加载资源的元素会触发一个 Event 接口的 error 事件，并执行该元素上的onerror() 处理函数。这些 error 事件不会向上冒泡到 window ，不过（至少在 Firefox 中）能被单一的window.addEventListener 捕获。</p>
+<pre><code>&lt;scritp&gt;
+window.addEventListener('error', (error) =&gt; {
+    console.log('捕获到异常：', error);
+}, true)
+&lt;/script&gt;
+&lt;img src="./erdang.png"&gt;</code></pre><p><img src="/2020/11/23/error/895EB798-4956-45DE-BDA9-0B3B7BCF4688.png" alt="图二"></p>
+<p>由于网络请求异常不会事件冒泡，因此必须在捕获阶段将其捕捉到才行，但是这种方式虽然可以捕捉到网络请求的异常，但是无法判断 HTTP 的状态是 404 还是其他比如 500 等等，所以还需要配合服务端日志才进行排查分析才可以。</p>
+<p>需要注意：</p>
+<ul>
+<li>不同浏览器下返回的 error 对象可能不同，需要注意兼容处理。</li>
+<li>需要注意避免 addEventListener 重复监听。</li>
+</ul>
+<h3 id="六、Promise-Catch"><a href="#六、Promise-Catch" class="headerlink" title="六、Promise Catch"></a>六、Promise Catch</h3><blockquote>
+<p>在 promise 中使用 catch 可以非常方便的捕获到异步 error ，这个很简单。</p>
+</blockquote>
+<p>没有写 catch 的 Promise 中抛出的错误无法被 onerror 或 try-catch 捕获到，所以我们务必要在 Promise 中不要忘记写 catch 处理抛出的异常。</p>
+<p>解决方案： 为了防止有漏掉的 Promise 异常，建议在全局增加一个对 unhandledrejection 的监听，用来全局监听Uncaught Promise Error。使用方式：</p>
+<pre><code>window.addEventListener("unhandledrejection", function(e){
+    console.log(e);
+});</code></pre><p>所以，正如我们上面所说，为了防止有漏掉的 Promise 异常，建议在全局增加一个对 unhandledrejection 的监听，用来全局监听 Uncaught Promise Error。</p>
+<p>补充一点：如果去掉控制台的异常显示，需要加上：</p>
+<p>event.preventDefault();</p>
+<h3 id="七、VUE-errorHandler"><a href="#七、VUE-errorHandler" class="headerlink" title="七、VUE errorHandler"></a>七、VUE errorHandler</h3><pre><code>Vue.config.errorHandler = (err, vm, info) =&gt; {
+    console.error('通过vue errorHandler捕获的错误');
+    console.error(err);
+    console.error(vm);
+    console.error(info);
+}</code></pre><h3 id="八、React-异常捕获"><a href="#八、React-异常捕获" class="headerlink" title="八、React 异常捕获"></a>八、React 异常捕获</h3><p>React 16 提供了一个内置函数 componentDidCatch，使用它可以非常简单的获取到 react 下的错误信息</p>
+<pre><code>componentDidCatch(error, info) {
+    console.log(error, info);
+}</code></pre><h3 id="九、iframe-异常"><a href="#九、iframe-异常" class="headerlink" title="九、iframe 异常"></a>九、iframe 异常</h3><p>对于 iframe 的异常捕获，我们还得借力 window.onerror：</p>
+<pre><code>&lt;iframe src="./iframe.html" frameborder="0"&gt;&lt;/iframe&gt;
+&lt;script&gt;
+window.frames[0].onerror = function (message, source, lineno, colno, error) {
+    console.log('捕获到 iframe 异常：',{message, source, lineno, colno, error});
+    return true;
+};
+&lt;/script&gt;</code></pre><h3 id="十、Script-error"><a href="#十、Script-error" class="headerlink" title="十、Script error"></a>十、Script error</h3><p>一般情况，如果出现 Script error 这样的错误，基本上可以确定是出现了跨域问题。这时候，是不会有其他太多辅助信息的，但是解决思路无非如下：</p>
+<blockquote>
+<p>跨源资源共享机制( CORS )：我们为 script 标签添加 crossOrigin 属性。</p>
+</blockquote>
+<pre><code>&lt;script src="http://erdang.wang/main.js" crossorigin&gt;&lt;/script&gt;</code></pre><p>或者动态去添加 js 脚本</p>
+<pre><code>const script = document.createElement('script');
+script.crossOrigin = 'anonymous';
+script.src = url;
+document.body.appendChild(script);</code></pre><blockquote>
+<p>特别注意，服务器端需要设置：Access-Control-Allow-Origin</p>
+</blockquote>
+<pre class=" language-bash"><code class="language-bash">const originAddEventListener <span class="token operator">=</span> EventTarget.prototype.addEventListener<span class="token punctuation">;</span>
+EventTarget.prototype.addEventListener <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>type, listener, options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  const wrappedListener <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">..</span>.args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    try <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> listener.apply<span class="token punctuation">(</span>this, args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    catch <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      throw err<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> originAddEventListener.call<span class="token punctuation">(</span>this, type, wrappedListener, options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+简单解释一下：
+
+改写了 EventTarget 的 addEventListener 方法；
+对传入的 listener 进行包装，返回包装过的 listener，对其执行进行 try-catch；
+浏览器不会对 try-catch 起来的异常进行跨域拦截，所以 catch 到的时候，是有堆栈信息的；
+重新 throw 出来异常的时候，执行的是同域代码，所以 window.onerror 捕获的时候不会丢失堆栈信息；
+利用包装 addEventListener，我们还可以达到「扩展堆栈」的效果：
+
+<span class="token punctuation">((</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+   const originAddEventListener <span class="token operator">=</span> EventTarget.prototype.addEventListener<span class="token punctuation">;</span>
+   EventTarget.prototype.addEventListener <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>type, listener, options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
++    // 捕获添加事件时的堆栈
++    const addStack <span class="token operator">=</span> new Error<span class="token punctuation">(</span><span class="token variable"><span class="token variable">`</span>Event <span class="token punctuation">(</span>$<span class="token punctuation">{</span>type<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token variable">`</span></span><span class="token punctuation">)</span>.stack<span class="token punctuation">;</span>
+     const wrappedListener <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">..</span>.args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       try <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> listener.apply<span class="token punctuation">(</span>this, args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+       catch <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
++        // 异常发生时，扩展堆栈
++        err.stack +<span class="token operator">=</span> <span class="token string">'\n'</span> + addStack<span class="token punctuation">;</span>
+         throw err<span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">return</span> originAddEventListener.call<span class="token punctuation">(</span>this, type, wrappedListener, options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="十一、崩溃和卡顿"><a href="#十一、崩溃和卡顿" class="headerlink" title="十一、崩溃和卡顿"></a>十一、崩溃和卡顿</h3><p>卡顿也就是网页暂时响应比较慢， JS 可能无法及时执行。但崩溃就不一样了，网页都崩溃了，JS 都不运行了，还有什么办法可以监控网页的崩溃，并将网页崩溃上报呢？</p>
+<pre class=" language-bash"><code class="language-bash">基于Service Worker的崩溃方案
+
+随着PWA概念的流行，大家对Service Worker也逐渐熟悉起来。基于以下原因，我们可以使用Service Worker来实现网页崩溃的监控：
+*1、Service Worker有自己独立的工作线程，与网页区分开，网页崩溃了，Service Worker一般情况下不会崩溃；
+*2、Service Worker生命周期一般比网页还要长，可以用来监控网页的状态；
+*3、网页可以通过**navigator.serviceWorker.controller.postMessage**API向掌管自己的SW发送消息。
+基于以上几点，我们可以实现一种基于心跳检测 的监控方案：
+*P1：网页加载后，通过**postMessage**API每5s给sw发送一个心跳，表示自己在线，sw将在线的网页登记下来，更新登记时间；
+*P2：网页在beforeunload时，通过**postMessage**API告知sw自己已经正常关闭，sw将登记的网页清除；
+*P3：如果网页在运行的过程中crash了，sw中的running状态将不会被清除，更新时间停留在崩溃前的最后一次心跳；
+*P4：Service Worker每10s查看一遍登记中的网页，发现登记时间已经超出了一定时间（比如15s），即可判定该网页crash了。
+一些简化后的测试代码，供参考：
+
+
+if<span class="token punctuation">(</span>navigator.serviceWorker.controller <span class="token operator">!=</span><span class="token operator">=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">let</span> HEARTBEAT_INTERVAL <span class="token operator">=</span> 5 * 1000<span class="token punctuation">;</span>//每5s发一次心跳
+    <span class="token keyword">let</span> sessionId <span class="token operator">=</span> uuid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> heartbeat <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        navigator.serviceWorker.controller.postMessage<span class="token punctuation">(</span><span class="token punctuation">{</span>
+            type: <span class="token string">'heartbeat'</span>,
+            id: sessionId,//本次页面会话唯一的id；
+            data: <span class="token punctuation">{</span><span class="token punctuation">}</span> //附加信息，如果页面crash，上报的附加数据
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    window.addEventListener<span class="token punctuation">(</span><span class="token string">'beforeunload'</span>,function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        navigator.serviceWorker.controller.postMessage<span class="token punctuation">(</span><span class="token punctuation">{</span>
+            type: <span class="token string">'unload'</span>,
+            id: sessionId
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    setInterval<span class="token punctuation">(</span>heartbeat,HEARTBEAT_INTERVAL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    heartbeat<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+const CHECK_CRASH_INTERVAL <span class="token operator">=</span> 10*1000<span class="token punctuation">;</span> //每10s检查一次
+const CRASH_THRESHOLD <span class="token operator">=</span> 15 * 1000<span class="token punctuation">;</span> //超过15s没有心跳则认为已经crash
+const pages <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">let</span> timer
+<span class="token keyword">function</span> checkCrash<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    const now <span class="token operator">=</span> Date.now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span> var <span class="token function">id</span> <span class="token keyword">in</span> pages<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">let</span> page <span class="token operator">=</span> pages<span class="token punctuation">[</span>id<span class="token punctuation">]</span>
+        if<span class="token punctuation">((</span>now-page.t<span class="token punctuation">)</span><span class="token operator">></span>CRASH_THRESHOLD<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            //上报 crash
+            delete pages<span class="token punctuation">[</span>id<span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    if<span class="token punctuation">(</span>Object.keys<span class="token punctuation">(</span>pages<span class="token punctuation">)</span>.length <span class="token operator">==</span> 0<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        clearInterval<span class="token punctuation">(</span>timer<span class="token punctuation">)</span>
+        timer <span class="token operator">=</span> null
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+worker.addEventListener<span class="token punctuation">(</span><span class="token string">'message'</span>, <span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    const data <span class="token operator">=</span> e.data<span class="token punctuation">;</span>
+    if<span class="token punctuation">(</span>data.type <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'heartbeat'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        pages<span class="token punctuation">[</span>data.id<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+            t: Data.now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        if<span class="token punctuation">(</span><span class="token operator">!</span>timer<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            timer <span class="token operator">=</span> setInterval<span class="token punctuation">(</span>function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                checkCrash<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>,CHECK_CRASH_INTERVAL<span class="token punctuation">)</span> 
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>else if<span class="token punctuation">(</span>data.type <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'unload'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        delete pages<span class="token punctuation">[</span>data.id<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h3 id="十二、错误上报"><a href="#十二、错误上报" class="headerlink" title="十二、错误上报"></a>十二、错误上报</h3><p>1.通过 Ajax 发送数据<br>因为 Ajax 请求本身也有可能会发生异常，而且有可能会引发跨域问题，一般情况下更推荐使用动态创建 img 标签的形式进行上报。</p>
+<p>2.动态创建 img 标签的形式</p>
+<pre><code>function report(error) {
+    let reportUrl = 'http://jartto.wang/report';
+    new Image().src = `${reportUrl}?logs=${error}`;
+}</code></pre><p>收集异常信息量太多，怎么办？实际中，我们不得不考虑这样一种情况：如果你的网站访问量很大，那么一个必然的错误发送的信息就有很多条，这时候，我们需要设置采集率，从而减缓服务器的压力：</p>
+<pre><code>Reporter.send = function(data) {
+    // 只采集 30%
+    if(Math.random() &lt; 0.3) {
+        send(data)      // 上报错误信息
+    }
+}</code></pre><h3 id="十三、总结"><a href="#十三、总结" class="headerlink" title="十三、总结"></a>十三、总结</h3><p>1.可疑区域增加 Try-Catch<br>2.全局监控 JS 异常 window.onerror<br>3.全局监控静态资源异常 window.addEventListener<br>4.捕获没有 Catch 的 Promise 异常：unhandledrejection<br>5.VUE errorHandler 和 React componentDidCatch<br>6.监控网页崩溃：window 对象的 load 和 beforeunload<br>7.跨域 crossOrigin 解决</p>
+<p>其实很简单，正如上文所说：采用组合方案，分类型的去捕获异常，这样基本 80%-90% 的问题都化于无形。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">愤怒的二档</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://erdang.github.io/2020/11/23/error/">https://erdang.github.io/2020/11/23/error/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">愤怒的二档</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%BC%82%E5%B8%B8/">
+                                    <span class="chip bg-color">异常</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .mvaline-card {
+        margin: 1.5rem auto;
+    }
+
+    .mvaline-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+</style>
+
+<div class="card mvaline-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="mvcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/minivaline/dist/MiniValine.min.js"></script>
+<script>
+    new MiniValine({
+        el: '#mvcomments',
+        appId: 'SUSPuHv0ouzccm6Rwua09q8h-gzGzoHsz',
+        appKey: 'uMcHJlSNQiTfrG8ujAvoVQ2g',
+        mode: 'DesertsP',
+        placeholder: 'Write a Comment',
+        pathname: window.location.pathname,
+        lang: '',
+        adminEmailMd5: 'de8a7aa53d07e6b6bceb45c64027763d',
+        tagMeta: ["管理员", "小伙伴", "访客"],
+        master: ["de8a7aa53d07e6b6bceb45c64027763d"],
+        friends: ["b5bd5d836c7a0091aa8473e79ed4c25e", "adb7d1cd192658a55c0ad22a3309cecf", "3ce1e6c77b4910f1871106cb30dc62b0", "cfce8dc43725cc14ffcd9fb4892d5bfc"],
+        math: true,
+        md: true,
+        enableQQ: false,
+        NoRecordIP: false,
+        visitor: true,
+        maxNest: 6,
+        pageSize: 6,
+        serverURLs: '',
+        emoticonUrl: ["https://cdn.jsdelivr.net/npm/alus@latest", "https://cdn.jsdelivr.net/gh/MiniValine/qq@latest", "https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@latest", "https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest", "https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest", "https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest"],
+    });
+</script>
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/12/17/curry/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="柯理化">
+                        
+                        <span class="card-title">柯理化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            简介柯理化 又称 部分求值,是把接受多个参数的函数变成一个接受单一参数的函数,并且返回接受剩余参数返回结果的新函数的技术
+简而言之就是把多参数的函数拆成单参数的函数,内部在返回调用下一单参数函数，依次处理剩余参数
+看这个解释有一点抽象，我们
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/js/" class="post-category">
+                                    js
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/js/">
+                        <span class="chip bg-color">js</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9F%AF%E7%90%86%E5%8C%96/">
+                        <span class="chip bg-color">柯理化</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/">
+                        <span class="chip bg-color">高阶函数</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/11/18/route/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="一篇文章搞懂前端路由原理解析和实现方式">
+                        
+                        <span class="card-title">一篇文章搞懂前端路由原理解析和实现方式</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            什么是前端路由路由的概念来源于服务端，在服务端中路由描述的是 URL 与处理函数之间的映射关系。
+在 Web 前端单页应用 SPA(Single Page Application)中，路由描述的是 URL 与 UI 之间的映射关系，这种映射
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/route/" class="post-category">
+                                    route
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/route/">
+                        <span class="chip bg-color">route</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%B7%AF%E7%94%B1/">
+                        <span class="chip bg-color">路由</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="1325898369"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">愤怒的二档</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">12.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/erdang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:924064382@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=924064382" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 924064382" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
